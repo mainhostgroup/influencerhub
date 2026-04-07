@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Influence Hub | Find Influencers Across South Africa</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<style>
+:root{
+  --primary:#14b8a6;
+  --primary-dark:#0f766e;
+  --secondary:#ccfbf1;
+  --soft:#f0fdfa;
+  --dark:#163232;
+  --muted:#5b7070;
+  --bg:#f8fffe;
+  --card:#ffffff;
+  --border:#99f6e4;
+  --accent:#5eead4;
+  --shadow:rgba(15,118,110,.12);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--dark);
+}
+a{text-decoration:none}
+button{font-family:inherit}
+
+/* NAV */
+nav{
+  background:linear-gradient(135deg,#2dd4bf,#14b8a6);
+  padding:1rem 2rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 10px 30px var(--shadow);
+}
+nav strong{
+  color:#fff;
+  font-size:1.2rem;
+  letter-spacing:.3px;
+}
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:1rem;
+  margin:0;
+  padding:0;
+  align-items:center;
+}
+nav a{
+  color:#fff;
+  font-weight:700;
+}
+.nav-cta{
+  background:rgba(255,255,255,.16);
+  padding:.58rem 1rem;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.22);
+  backdrop-filter:blur(8px);
+}
+
+/* HERO */
+.hero{
+  min-height:390px;
+  background:
+    linear-gradient(rgba(10,35,34,.56),rgba(15,118,110,.34)),
+    url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80') center/cover;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  text-align:center;
+  padding:0 1rem;
+}
+.hero-content{max-width:980px}
+.hero h1{
+  font-size:2.5rem;
+  max-width:920px;
+  line-height:1.12;
+  margin:0 auto .9rem;
+}
+.hero p{
+  margin:0 auto 1.2rem;
+  max-width:760px;
+  color:rgba(255,255,255,.95);
+  font-size:1.03rem;
+}
+.hero-actions{
+  display:flex;
+  gap:.8rem;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:1.2rem;
+}
+.hero-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:.85rem 1.15rem;
+  border-radius:999px;
+  font-weight:800;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.hero-btn.primary{
+  background:#fff;
+  color:var(--primary-dark);
+}
+.hero-btn.secondary{
+  background:rgba(255,255,255,.12);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.22);
+}
+.hero-btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 12px 24px rgba(0,0,0,.12);
+}
+
+/* SECTIONS */
+section{padding:3rem 2rem}
+h2{margin:0 0 1.2rem}
+
+/* STATS */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:1rem;
+  margin-top:-1.4rem;
+  padding:0 2rem 1rem;
+}
+.stat-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:1rem;
+  box-shadow:0 12px 24px var(--shadow);
+}
+.stat-card strong{
+  display:block;
+  font-size:1.35rem;
+  color:var(--primary-dark);
+}
+.stat-card span{
+  color:var(--muted);
+  font-size:.92rem;
+}
+
+/* FILTERS */
+.filters{
+  background:var(--card);
+  padding:1.5rem;
+  border-radius:20px;
+  box-shadow:0 10px 26px var(--shadow);
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:1rem;
+  margin-bottom:2.5rem;
+  border:1px solid var(--border);
+}
+.filters input,.filters select{
+  padding:.78rem .8rem;
+  border-radius:12px;
+  border:1px solid var(--border);
+  outline:none;
+  background:#fff;
+  color:var(--dark);
+}
+.filters input:focus,.filters select:focus{
+  border-color:rgba(20,184,166,.9);
+  box-shadow:0 0 0 4px rgba(20,184,166,.13);
+}
+.filters button{
+  background:linear-gradient(135deg,#2dd4bf,#14b8a6);
+  color:#fff;
+  border:none;
+  border-radius:12px;
+  padding:.82rem;
+  font-weight:800;
+  cursor:pointer;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.filters button:hover{
+  transform:translateY(-1px);
+  box-shadow:0 12px 24px var(--shadow);
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+  gap:1.5rem;
+}
+
+/* CARD */
+.card{
+  background:var(--card);
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 12px 26px var(--shadow);
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  border:1px solid rgba(20,184,166,.12);
+  transition:transform .22s ease, box-shadow .22s ease;
+}
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 42px rgba(15,118,110,.18);
+}
+.card:hover .profile-img img{
+  transform:scale(1.04);
+}
+
+/* BADGES */
+.badges{
+  position:absolute;
+  top:12px;
+  left:12px;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  z-index:10;
+}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:.35rem .6rem;
+  border-radius:999px;
+  font-size:.72rem;
+  font-weight:900;
+  border:1px solid rgba(0,0,0,.04);
+  background:rgba(255,255,255,.94);
+  color:#163232;
+}
+.badge.featured{
+  background:#ccfbf1;
+  color:#115e59;
+}
+.badge.verified{
+  background:#99f6e4;
+  color:#134e4a;
+}
+.badge.agency{
+  background:#d1fae5;
+  color:#065f46;
+}
+.badge.independent{
+  background:#ecfeff;
+  color:#0f766e;
+}
+
+/* IMAGE */
+.profile-img{
+  height:220px;
+  background:#f3f4f6;
+}
+.profile-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .22s ease;
+}
+
+/* BODY */
+.card-body{
+  padding:1rem 1rem 1.1rem;
+  display:flex;
+  flex-direction:column;
+  gap:.45rem;
+}
+.name-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:.75rem;
+}
+.card-body strong{
+  font-size:1.05rem;
+  line-height:1.2;
+}
+.details{
+  font-size:.92rem;
+  color:var(--muted);
+  margin:0;
+}
+.platforms,
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:.2rem;
+}
+.platform-pill,
+.tag-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:.35rem .58rem;
+  border-radius:999px;
+  background:#f0fdfa;
+  border:1px solid rgba(20,184,166,.18);
+  font-size:.82rem;
+  color:var(--primary-dark);
+  font-weight:700;
+}
+.platform-pill{
+  background:#ecfeff;
+}
+.card-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.7rem;
+  margin-top:auto;
+  padding-top:.45rem;
+}
+.action-btn{
+  padding:.78rem;
+  border-radius:14px;
+  text-align:center;
+  font-weight:900;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.action-btn.primary{
+  background:linear-gradient(135deg,#99f6e4,#5eead4);
+  color:#134e4a;
+  border:1px solid rgba(15,118,110,.08);
+}
+.action-btn.secondary{
+  background:#fff;
+  color:var(--primary-dark);
+  border:1px solid rgba(20,184,166,.22);
+}
+button.action-btn{
+  border:none;
+  cursor:pointer;
+  font-family:inherit;
+}
+.action-btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 12px 22px rgba(15,118,110,.14);
+}
+
+/* PAGINATION */
+.pagination{
+  display:flex;
+  justify-content:center;
+  gap:.5rem;
+  margin-top:2rem;
+  flex-wrap:wrap;
+}
+.pagination button{
+  padding:.55rem .85rem;
+  border:none;
+  border-radius:10px;
+  background:#ccfbf1;
+  cursor:pointer;
+  font-weight:800;
+  color:var(--primary-dark);
+}
+.pagination button.active{
+  background:var(--primary);
+  color:#fff;
+}
+
+/* FOOTER */
+footer{
+  background:#163232;
+  color:#fff;
+  text-align:center;
+  padding:2rem;
+  margin-top:3rem;
+}
+
+/* AUTOCOMPLETE */
+.autocomplete-wrap{position:relative}
+.autocomplete-box{
+  position:absolute;
+  top:calc(100% + 8px);
+  left:0;
+  right:0;
+  background:#fff;
+  border-radius:14px;
+  box-shadow:0 12px 30px rgba(15,118,110,.12);
+  max-height:240px;
+  overflow:auto;
+  display:none;
+  z-index:500;
+  border:1px solid rgba(20,184,166,.15);
+}
+.autocomplete-box div{
+  padding:.7rem .85rem;
+  cursor:pointer;
+  border-bottom:1px solid #ebfffb;
+  font-weight:700;
+  color:var(--dark);
+}
+.autocomplete-box div:hover{
+  background:#f0fdfa;
+}
+
+/* PROFILE MODAL */
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(8,25,25,.62);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:1rem;
+  z-index:2000;
+}
+.modal-overlay.active{
+  display:flex;
+}
+.profile-modal{
+  width:100%;
+  max-width:520px;
+  background:#fff;
+  border-radius:22px;
+  border:1px solid rgba(20,184,166,.15);
+  box-shadow:0 25px 60px rgba(0,0,0,.18);
+  overflow:hidden;
+  animation:modalFade .22s ease;
+}
+@keyframes modalFade{
+  from{
+    opacity:0;
+    transform:translateY(10px) scale(.98);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+.modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:1rem;
+  padding:1rem 1.2rem;
+  background:linear-gradient(135deg,#2dd4bf,#14b8a6);
+  color:#fff;
+}
+.modal-header h3{
+  margin:0;
+  font-size:1.1rem;
+}
+.modal-close{
+  background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.18);
+  color:#fff;
+  width:38px;
+  height:38px;
+  border-radius:999px;
+  cursor:pointer;
+  font-size:1rem;
+  font-weight:800;
+}
+.modal-body{
+  padding:1.2rem;
+}
+.modal-top{
+  display:flex;
+  gap:1rem;
+  align-items:center;
+  margin-bottom:1rem;
+}
+.modal-avatar{
+  width:72px;
+  height:72px;
+  border-radius:18px;
+  overflow:hidden;
+  flex-shrink:0;
+  background:#f3f4f6;
+}
+.modal-avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.modal-meta h4{
+  margin:0 0 .25rem;
+  font-size:1.05rem;
+  color:var(--dark);
+}
+.modal-meta p{
+  margin:0;
+  color:var(--muted);
+  font-size:.92rem;
+}
+.social-list{
+  display:grid;
+  gap:.75rem;
+  margin-top:1rem;
+}
+.social-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:.75rem;
+  padding:.85rem 1rem;
+  border:1px solid rgba(20,184,166,.14);
+  border-radius:16px;
+  background:#f0fdfa;
+}
+.social-item-left{
+  display:flex;
+  align-items:center;
+  gap:.65rem;
+  min-width:0;
+}
+.social-icon{
+  width:36px;
+  height:36px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#ccfbf1;
+  font-size:1rem;
+}
+.social-text strong{
+  display:block;
+  font-size:.92rem;
+  color:var(--dark);
+}
+.social-text span{
+  display:block;
+  font-size:.8rem;
+  color:var(--muted);
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  max-width:220px;
+}
+.social-link-btn{
+  padding:.62rem .9rem;
+  border-radius:12px;
+  background:linear-gradient(135deg,#99f6e4,#5eead4);
+  color:#134e4a;
+  font-weight:800;
+  font-size:.84rem;
+  border:1px solid rgba(15,118,110,.08);
+}
+.no-socials{
+  padding:1rem;
+  border-radius:16px;
+  background:#f9fafb;
+  color:var(--muted);
+  text-align:center;
+  border:1px dashed #d1d5db;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  section{padding:2.2rem 1rem}
+  nav{padding:1rem}
+  nav ul{gap:.6rem}
+  .hero h1{font-size:1.85rem}
+  .hero p{font-size:.95rem}
+  .stats{padding:0 1rem 1rem}
+  .card-actions{grid-template-columns:1fr}
+  .modal-top{align-items:flex-start}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <strong>Influencerhub SA</strong>
+  <ul>
+    <li><a href="#all">Find Influencers</a></li>
+    <li>
+      <a class="nav-cta"
+         href="https://wa.me/278XXXXXXXX?text=Hello%20InfluenceHub%20SA%20I%20want%20to%20list%20my%20influencer%20profile"
+         target="_blank" rel="noopener">
+        List Your Profile
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-content">
+    <h1>Find Influencers Across South Africa for Fashion, Beauty, Lifestyle, Food, Tech and More</h1>
+    <p>Browse creators by industry, platform, audience size and province. Connect with influencers for brand campaigns, product promotions, launches, reviews and digital collaborations.</p>
+    <div class="hero-actions">
+      <a href="#all" class="hero-btn primary">Browse Influencers</a>
+      <a href="https://wa.me/278XXXXXXXX?text=Hello%20InfluenceHub%20SA%20I%20want%20to%20join%20the%20marketplace"
+         class="hero-btn secondary" target="_blank" rel="noopener">
+        Join as Influencer
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat-card">
+    <strong>50+</strong>
+    <span>Campaign Managers & Marketing Agencies</span>
+  </div>
+  <div class="stat-card">
+    <strong>8+</strong>
+    <span>Industries and creator niches</span>
+  </div>
+  <div class="stat-card">
+    <strong>9 Provinces</strong>
+    <span>Nationwide campaign reach</span>
+  </div>
+  <div class="stat-card">
+    <strong>Fast Match</strong>
+    <span>Connect brands to the right audience</span>
+  </div>
+</div>
+
+<section id="all">
+
+  <div class="filters">
+    <div class="autocomplete-wrap">
+      <input type="text" id="areaFilter" placeholder="Search city, township or area..." autocomplete="off" />
+      <div class="autocomplete-box" id="autoBox"></div>
+    </div>
+
+    <select id="provinceFilter">
+      <option value="">All Provinces</option>
+      <option>Gauteng</option>
+      <option>Western Cape</option>
+      <option>KwaZulu-Natal</option>
+      <option>Eastern Cape</option>
+      <option>Limpopo</option>
+      <option>Mpumalanga</option>
+      <option>North West</option>
+      <option>Free State</option>
+      <option>Northern Cape</option>
+    </select>
+
+    <select id="industryFilter">
+      <option value="">All Industries</option>
+      <option>Beauty</option>
+      <option>Fashion</option>
+      <option>Lifestyle</option>
+      <option>Food</option>
+      <option>Fitness</option>
+      <option>Tech</option>
+      <option>Travel</option>
+      <option>Business</option>
+      <option>Parenting</option>
+      <option>Entertainment</option>
+    </select>
+
+    <select id="platformFilter">
+      <option value="">All Platforms</option>
+      <option>Instagram</option>
+      <option>TikTok</option>
+      <option>YouTube</option>
+      <option>Facebook</option>
+      <option>X</option>
+    </select>
+
+    <select id="audienceFilter">
+      <option value="">All Audience Sizes</option>
+      <option>Nano (1K - 10K)</option>
+      <option>Micro (10K - 50K)</option>
+      <option>Mid-tier (50K - 250K)</option>
+      <option>Macro (250K+)</option>
+    </select>
+
+    <button onclick="applyFilters()">Apply Filters</button>
+  </div>
+
+  <h2>⭐ Featured Influencers</h2>
+  <div id="featured" class="grid"></div>
+
+  <h2>All Listings</h2>
+  <div id="listings" class="grid"></div>
+  <div id="pagination" class="pagination"></div>
+
+</section>
+
+<footer>© 2026 InfluenceHub SA</footer>
+
+<div class="modal-overlay" id="profileModal">
+  <div class="profile-modal">
+    <div class="modal-header">
+      <h3 id="modalTitle">Profile</h3>
+      <button class="modal-close" id="closeModalBtn" type="button">✕</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="modal-top">
+        <div class="modal-avatar">
+          <img id="modalImage" src="" alt="Profile image">
+        </div>
+        <div class="modal-meta">
+          <h4 id="modalName"></h4>
+          <p id="modalInfo"></p>
+        </div>
+      </div>
+
+      <div id="modalSocials" class="social-list"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+const PER_PAGE = 9;
+let currentPage = 1;
+let filteredData = [];
+
+const areaList = [
+  "Soweto","Tembisa","Mamelodi","Soshanguve","Alexandra","Katlehong","Vosloorus","Midrand","Centurion",
+  "Khayelitsha","Mitchells Plain","Gugulethu","Nyanga","Bellville","Paarl","George",
+  "Umlazi","KwaMashu","Inanda","Phoenix","Chatsworth","Newcastle",
+  "Mdantsane","Zwide","Motherwell","Mthatha","East London",
+  "Seshego","Polokwane","Thohoyandou","Giyani",
+  "Nelspruit","Emalahleni","Middelburg",
+  "Mahikeng","Rustenburg","Klerksdorp",
+  "Botshabelo","Welkom","Bloemfontein",
+  "Kimberley","Galeshewe","Upington"
+];
+
+const platformIcons = {
+  "Instagram":"📸",
+  "TikTok":"🎵",
+  "YouTube":"▶️",
+  "Facebook":"👍",
+  "X":"✖️"
+};
+
+const influencerData = [
+  {
+    id:1,
+    name:"vukatihlungwani",
+    area:"Soweto",
+    province:"Gauteng",
+    industry:"Music",
+    niche:"Music & Fashion",
+    platforms:["Instagram","Youtube"],
+    audience:"Micro (10K - 50K)",
+    followers:"28K followers",
+    engagement:"6.8% engagement",
+    featured:true,
+    verified:true,
+    type:"Independent",
+    tags:["Brand shoots","Music","Product features"],
+    image:"/images/entertainers/id001.jpg",
+    whatsapp:"https://wa.me/27821234567",
+    socialLinks:[
+      { platform:"Instagram", url:"https://instagram.com/ayandastyles" },
+      { platform:"TikTok", url:"https://tiktok.com/@ayandastyles" }
+    ]
+  },
+  {
+    id:2,
+    name:"Siyanda Bani",
+    area:"Johannesburg",
+    province:"Gauteng",
+    industry:"Beauty",
+    niche:"Fashion & Lifestyle",
+    platforms:["Instagram","YouTube","TikTok"],
+    audience:"Macro (250K+)",
+    followers:"42K followers",
+    engagement:"7.9% engagement",
+    featured:true,
+    verified:true,
+    type:"Independent",
+    tags:["Fashion","Lifestyle","Travel"],
+    image:"/images/lifestyle/id001.jpg",
+    whatsapp:"siyandabani@gmail.com",
+    socialLinks:[
+      { platform:"Instagram", url:"https://instagram.com/siyabunny" },
+      { platform:"YouTube", url:"https://youtube.com/@siyabunny" },
+      { platform:"TikTok", url:"https://tiktok.com/@siyabunny" }
+    ]
+  },
+  {
+    id:3,
+    name:"Zola Mcaciso",
+    area:"Enkeva ",
+    province:"Eastern Cape",
+    industry:"Automotive",
+    niche:"Cars, Car Sports & Local Entertainment",
+    platforms:["Instagram","TikTok","Facebook"],
+    audience:"Mid-tier (50K - 250K)",
+    followers:"115K followers",
+    engagement:"5.7% engagement",
+    featured:true,
+    verified:false,
+    type:"Agency",
+    tags:["Car reviews","Launch events","Local campaigns"],
+    image:"/images/auto/id001.jpg",
+    whatsapp:"zolamcaciso@gmail.com",
+    socialLinks:[
+      { platform:"Instagram", url:"https://instagram.com/zowlars" },
+      { platform:"TikTok", url:"https://tiktok.com/@zowlars" },
+      { platform:"Facebook", url:"https://facebook.com/zowlars" }
+    ]
+  },
+  {
+    id:4,
+    name:"Ushoti.m",
+    area:"Johannesburg",
+    province:"Gauteng",
+    industry:"Lifestyle",
+    niche:"Fashion, Wellness & Lifestyle",
+    platforms:["Instagram","YouTube"],
+    audience:"Macro (250K+)",
+    followers:"38K followers",
+    engagement:"8.3% engagement",
+    featured:false,
+    verified:true,
+    type:"Independent",
+    tags:["Lifestyle","Entertainment","Unboxing"],
+    image:"/images/lifestyle/id002.jpg",
+    whatsapp:"ushoti@gmail.com",
+    socialLinks:[
+      { platform:"Instagram", url:"https://instagram.com/ushoti.m" },
+      { platform:"TikTok", url:"https://tiktok.com/@ushoti.m" },
+      { platform:"YouTube", url:"https://youtube.com/@ushoti.m" }
+    ]
+  },
+  {
+    id:5,
+    name:"Justesethu",
+    area:"Cape Town",
+    province:"Western Cape",
+    industry:"Fashion",
+    niche:"Fashion, Lifestyle & Travel",
+    platforms:["Instagram","TikTok"],
+    audience:"Nano (10K - 50K)",
+    followers:"20K followers",
+    engagement:"5.9% engagement",
+    featured:false,
+    verified:true,
+    type:"Independent",
+    tags:["Fashion","Traveling","Lifestyle"],
+    image:"/images/lifestyle/id003.jpg",
+    whatsapp:"justesethu@gmail.com",
+    socialLinks:[
+      { platform:"YouTube", url:"https://youtube.com/@techwithsiya" },
+      { platform:"Instagram", url:"https://instagram.com/techwithsiya" },
+      { platform:"X", url:"https://x.com/techwithsiya" }
+    ]
+  },
+  {
+    id:6,
+    name:"Nonkululeko",
+    area:"Pretoria",
+    province:"Gauteng",
+    industry:"Lifestyle",
+    niche:"School, Fashion & Entertainment",
+    platforms:["Instagram","Facebook","TikTok"],
+    audience:"Mid-Tier (50k - 250k)",
+    followers:"9.2K followers",
+    engagement:"9.4% engagement",
+    featured:true,
+    verified:true,
+    type:"Agency",
+    tags:["Local campaigns","Community reach","Lifestyle content"],
+    image:"/images/teens/id001.jpg",
+    whatsapp:"nonkuleko100@gmail.com",
+    socialLinks:[
+      { platform:"Instagram", url:"https://instagram.com/Nonkululeko" },
+      { platform:"Facebook", url:"https://facebook.com/Nonkululeko" },
+      { platform:"TikTok", url:"https://tiktok.com/@Nonkululeko" }
+    ]
+  },
+  {
+    id:7,
+    name:"YNotMido",
+    area:"Johannesburg",
+    province:"Gauteng",
+    industry:"Streaming",
+    niche:"Live Streaming, Skits",
+    platforms:["Instagram","TikTok","YouTube"],
+    audience:"Mid-Tier (50K+)",
+    followers:"85K followers",
+    engagement:"6.5% engagement",
+    featured:false,
+    verified:false,
+    type:"Independent",
+    tags:["Streaming","Reviews","Social News"],
+    image:"/images/streamers/id001.jpg",
+    whatsapp:"ynotmido@gmail.com",
+    socialLinks:[
+      { platform:"Instagram", url:"https://instagram.com/Ynotmido" },
+      { platform:"TikTok", url:"https://tiktok.com/@Ynotmido" },
+      { platform:"YouTube", url:"https://youtube.com/@ynotmido" }
+    ]
+  },
+  {
+    id:8,
+    name:"Regodise",
+    area:"Benoni",
+    province:"Gauteng",
+    industry:"Parenting",
+    niche:"Family, Parenting, Entertainment",
+    platforms:["Facebook","Instagram"],
+    audience:"Macro (250K+)",
+    followers:"331K followers",
+    engagement:"4.1% engagement",
+    featured:true,
+    verified:true,
+    type:"Independent",
+    tags:["Family","Parenting","Sponsored content"],
+    image:"/images/parenting/id002.jpg",
+    whatsapp:"regodise@gmail.com",
+    socialLinks:[
+      { platform:"Facebook", url:"https://facebook.com/regodise" },
+      { platform:"Instagram", url:"https://instagram.com/regodise" },
+      { platform:"X", url:"https://x.com/regodise" }
+    ]
+  }
+];
+
+const areaInput = document.getElementById('areaFilter');
+const autoBox = document.getElementById('autoBox');
+const profileModal = document.getElementById('profileModal');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const modalTitle = document.getElementById('modalTitle');
+const modalName = document.getElementById('modalName');
+const modalInfo = document.getElementById('modalInfo');
+const modalImage = document.getElementById('modalImage');
+const modalSocials = document.getElementById('modalSocials');
+
+function showSuggestions(){
+  const val = areaInput.value.trim().toLowerCase();
+  autoBox.innerHTML = '';
+  if(!val){
+    autoBox.style.display='none';
+    return;
+  }
+
+  const extra = influencerData.map(c => c.area);
+  const combined = [...new Set([...areaList, ...extra])];
+
+  const matches = combined
+    .filter(a => a.toLowerCase().includes(val))
+    .slice(0, 12);
+
+  matches.forEach(name=>{
+    const div=document.createElement('div');
+    div.textContent=name;
+    div.onclick=()=>{
+      areaInput.value=name;
+      autoBox.style.display='none';
+      applyFilters();
+    };
+    autoBox.appendChild(div);
+  });
+
+  autoBox.style.display = matches.length ? 'block' : 'none';
+}
+
+document.addEventListener('click', (e)=>{
+  if(!e.target.closest('.autocomplete-wrap')) autoBox.style.display='none';
+});
+
+areaInput.addEventListener('input', ()=>{
+  showSuggestions();
+  applyFilters();
+});
+
+function iconForPlatform(platform){
+  return platformIcons[platform] || "📱";
+}
+
+function badgeClass(type){
+  const x = (type || "").toLowerCase();
+  if(x.includes("agency")) return "agency";
+  if(x.includes("independent")) return "independent";
+  return "";
+}
+
+function createCard(c){
+  const card=document.createElement('div');
+  card.className='card';
+
+  const badges=document.createElement('div');
+  badges.className='badges';
+
+  if(c.featured){
+    const b=document.createElement('span');
+    b.className='badge featured';
+    b.textContent='⭐ Featured';
+    badges.appendChild(b);
+  }
+
+  if(c.verified){
+    const b=document.createElement('span');
+    b.className='badge verified';
+    b.textContent='✅ Verified';
+    badges.appendChild(b);
+  }
+
+  if(c.type){
+    const b=document.createElement('span');
+    b.className='badge ' + badgeClass(c.type);
+    b.textContent = c.type === "Agency" ? "🏢 Agency" : "🎤 Independent";
+    badges.appendChild(b);
+  }
+
+  card.appendChild(badges);
+
+  const img=document.createElement('div');
+  img.className='profile-img';
+  img.innerHTML=`<img src="${c.image}" alt="${c.name}">`;
+
+  const body=document.createElement('div');
+  body.className='card-body';
+
+  const platformPills = (c.platforms || []).map(platform => {
+    const icon = iconForPlatform(platform);
+    return `<span class="platform-pill">${icon} ${platform}</span>`;
+  }).join('');
+
+  const tagPills = (c.tags || []).slice(0,3).map(tag => {
+    return `<span class="tag-pill">${tag}</span>`;
+  }).join('');
+
+  body.innerHTML=`
+    <div class="name-row">
+      <strong>${c.name}</strong>
+    </div>
+    <p class="details">📍 ${c.area}, ${c.province}</p>
+    <p class="details">🎯 ${c.industry} · ${c.niche}</p>
+    <p class="details">👥 ${c.followers}</p>
+    <p class="details">📈 ${c.engagement}</p>
+    <p class="details">📊 ${c.audience}</p>
+    <div class="platforms">${platformPills}</div>
+    <div class="tags">${tagPills}</div>
+    <div class="card-actions">
+      <a class="action-btn primary" href="${c.whatsapp}" target="_blank" rel="noopener">Book Influencer</a>
+      <button class="action-btn secondary" type="button" onclick="openProfileModal(${c.id})">View Profile</button>
+    </div>
+  `;
+
+  card.append(img,body);
+  return card;
+}
+
+function renderFeatured(){
+  const f=document.getElementById('featured');
+  f.innerHTML='';
+  influencerData
+    .filter(c=>c.featured)
+    .slice(0, 9)
+    .forEach(c=>f.appendChild(createCard(c)));
+}
+
+function renderListings(){
+  const l=document.getElementById('listings');
+  l.innerHTML='';
+  const start=(currentPage-1)*PER_PAGE;
+  filteredData.slice(start,start+PER_PAGE).forEach(c=>l.appendChild(createCard(c)));
+  renderPagination();
+}
+
+function renderPagination(){
+  const p=document.getElementById('pagination');
+  p.innerHTML='';
+  const pages=Math.ceil(filteredData.length/PER_PAGE) || 1;
+  for(let i=1;i<=pages;i++){
+    const b=document.createElement('button');
+    b.textContent=i;
+    if(i===currentPage) b.classList.add('active');
+    b.onclick=()=>{currentPage=i; renderListings()};
+    p.appendChild(b);
+  }
+}
+
+function applyFilters(){
+  const area = areaInput.value.trim().toLowerCase();
+  const prov = document.getElementById('provinceFilter').value;
+  const industry = document.getElementById('industryFilter').value;
+  const platform = document.getElementById('platformFilter').value;
+  const audience = document.getElementById('audienceFilter').value;
+
+  filteredData = influencerData.filter(c =>
+    (!area || (c.area+' '+c.province+' '+c.name+' '+(c.platforms||[]).join(' ')+' '+c.industry+' '+c.niche+' '+(c.tags||[]).join(' '))
+      .toLowerCase().includes(area)) &&
+    (!prov || c.province === prov) &&
+    (!industry || c.industry === industry) &&
+    (!platform || (c.platforms||[]).includes(platform)) &&
+    (!audience || c.audience === audience)
+  );
+
+  filteredData.sort((a,b)=>
+    (b.featured - a.featured) ||
+    (b.verified - a.verified) ||
+    a.name.localeCompare(b.name)
+  );
+
+  currentPage = 1;
+  renderListings();
+}
+
+function openProfileModal(id){
+  const profile = influencerData.find(item => item.id === id);
+  if(!profile) return;
+
+  modalTitle.textContent = `${profile.name} Profile`;
+  modalName.textContent = profile.name;
+  modalInfo.textContent = `${profile.industry} • ${profile.area}, ${profile.province}`;
+  modalImage.src = profile.image;
+  modalImage.alt = profile.name;
+
+  const socials = profile.socialLinks || [];
+  modalSocials.innerHTML = '';
+
+  if(!socials.length){
+    modalSocials.innerHTML = `<div class="no-socials">No social media links added yet.</div>`;
+  } else {
+    socials.forEach(item => {
+      const icon = iconForPlatform(item.platform);
+      const card = document.createElement('div');
+      card.className = 'social-item';
+
+      card.innerHTML = `
+        <div class="social-item-left">
+          <div class="social-icon">${icon}</div>
+          <div class="social-text">
+            <strong>${item.platform}</strong>
+            <span>${item.url}</span>
+          </div>
+        </div>
+        <a class="social-link-btn" href="${item.url}" target="_blank" rel="noopener">Open</a>
+      `;
+
+      modalSocials.appendChild(card);
+    });
+  }
+
+  profileModal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProfileModal(){
+  profileModal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+closeModalBtn.addEventListener('click', closeProfileModal);
+
+profileModal.addEventListener('click', (e) => {
+  if(e.target === profileModal){
+    closeProfileModal();
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape' && profileModal.classList.contains('active')){
+    closeProfileModal();
+  }
+});
+
+renderFeatured();
+filteredData = [...influencerData];
+applyFilters();
+</script>
+
+</body>
+</html>
